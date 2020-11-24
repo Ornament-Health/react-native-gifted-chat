@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React, { ReactNode } from 'react';
 import {
   StyleSheet,
@@ -9,7 +8,7 @@ import {
 } from 'react-native';
 import GiftedAvatar from './GiftedAvatar';
 import { isSameUser, isSameDay } from './utils';
-import { Omit, IMessage, User, LeftRightStyle } from './Models';
+import { IMessage, User, LeftRightStyle } from './Models';
 
 const styles = {
   left: StyleSheet.create({
@@ -74,26 +73,6 @@ export default class Avatar<
     onPressAvatar: () => {},
     onLongPressAvatar: () => {},
   };
-
-  // static propTypes = {
-  //   renderAvatarOnTop: PropTypes.bool,
-  //   showAvatarForEveryMessage: PropTypes.bool,
-  //   position: PropTypes.oneOf(['left', 'right']),
-  //   currentMessage: PropTypes.object,
-  //   previousMessage: PropTypes.object,
-  //   nextMessage: PropTypes.object,
-  //   onPressAvatar: PropTypes.func,
-  //   onLongPressAvatar: PropTypes.func,
-  //   renderAvatar: PropTypes.func,
-  //   containerStyle: PropTypes.shape({
-  //     left: StylePropType,
-  //     right: StylePropType,
-  //   }),
-  //   imageStyle: PropTypes.shape({
-  //     left: StylePropType,
-  //     right: StylePropType,
-  //   }),
-  // };
 
   renderAvatar() {
     if (this.props.renderAvatar) {

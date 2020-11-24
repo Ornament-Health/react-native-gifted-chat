@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
@@ -70,25 +69,6 @@ export default class Message<
     shouldUpdateMessage: undefined,
   };
 
-  // static propTypes = {
-  //   renderAvatar: PropTypes.func,
-  //   showUserAvatar: PropTypes.bool,
-  //   renderBubble: PropTypes.func,
-  //   renderDay: PropTypes.func,
-  //   renderSystemMessage: PropTypes.func,
-  //   position: PropTypes.oneOf(['left', 'right']),
-  //   currentMessage: PropTypes.object,
-  //   nextMessage: PropTypes.object,
-  //   previousMessage: PropTypes.object,
-  //   user: PropTypes.object,
-  //   inverted: PropTypes.bool,
-  //   containerStyle: PropTypes.shape({
-  //     left: StylePropType,
-  //     right: StylePropType,
-  //   }),
-  //   shouldUpdateMessage: PropTypes.func,
-  // };
-
   shouldComponentUpdate(nextProps: MessageProps<TMessage>) {
     const next = nextProps.currentMessage!;
     const current = this.props.currentMessage!;
@@ -122,7 +102,7 @@ export default class Message<
       if (this.props.renderDay) {
         return this.props.renderDay(props);
       }
-      return null; // <Day {...props} />;
+      return <Day {...props} />;
     }
     return null;
   }
@@ -132,7 +112,6 @@ export default class Message<
     if (this.props.renderBubble) {
       return this.props.renderBubble(props);
     }
-    // @ts-ignore
     return <Bubble {...props} />;
   }
 

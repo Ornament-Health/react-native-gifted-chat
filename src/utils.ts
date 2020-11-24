@@ -1,14 +1,6 @@
-// import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 
 import { IMessage } from './Models';
-
-// export const StylePropType = PropTypes.oneOfType([
-//   PropTypes.array,
-//   PropTypes.object,
-//   PropTypes.number,
-//   PropTypes.bool,
-// ]);
 
 export function isSameDay(
   currentMessage: IMessage,
@@ -44,8 +36,10 @@ const styleString = (color: string) => `color: ${color}; font-weight: bold`;
 
 const headerLog = '%c[react-native-gifted-chat]';
 
-export const warning = (...args: any) =>
-  console.log(headerLog, styleString('orange'), ...args);
+export const warning = (...args: any) => {
+  if (__DEV__) console.log(headerLog, styleString('orange'), ...args);
+};
 
-export const error = (...args: any) =>
-  console.log(headerLog, styleString('red'), ...args);
+export const error = (...args: any) => {
+  if (__DEV__) console.log(headerLog, styleString('red'), ...args);
+};

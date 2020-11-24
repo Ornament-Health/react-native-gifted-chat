@@ -1,7 +1,4 @@
-// @ts-nocheck
-import { Alert } from 'react-native';
-
-export default async function getPermissionAsync(permission) {
+export default async function getPermissionAsync(_permission: string) {
   // const { status } = await Permissions.askAsync(permission)
   // if (status !== 'granted') {
   //   const permissionName = permission.toLowerCase().replace('_', ' ')
@@ -23,7 +20,7 @@ export default async function getPermissionAsync(permission) {
   return true;
 }
 
-export async function getLocationAsync(onSend) {
+export async function getLocationAsync(_onSend: Function) {
   // if (await getPermissionAsync(Permissions.LOCATION)) {
   //   const location = await Location.getCurrentPositionAsync({})
   //   if (location) {
@@ -32,7 +29,7 @@ export async function getLocationAsync(onSend) {
   // }
 }
 
-export async function pickImageAsync(onSend) {
+export async function pickImageAsync(_onSend: Function) {
   // if (await getPermissionAsync(Permissions.CAMERA_ROLL)) {
   //   const result = await ImagePicker.launchImageLibraryAsync({
   //     allowsEditing: true,
@@ -45,7 +42,7 @@ export async function pickImageAsync(onSend) {
   // }
 }
 
-export async function takePictureAsync(onSend) {
+export async function takePictureAsync(_onSend: Function) {
   // if (await getPermissionAsync(Permissions.CAMERA)) {
   //   const result = await ImagePicker.launchCameraAsync({
   //     allowsEditing: true,

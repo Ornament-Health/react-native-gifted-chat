@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React, { ReactNode } from 'react';
 import {
   StyleSheet,
@@ -10,7 +9,6 @@ import {
   TextStyle,
 } from 'react-native';
 import Color from './Color';
-// import { StylePropType } from './utils';
 
 export interface ActionsProps {
   options?: { [key: string]: any };
@@ -32,37 +30,27 @@ export default class Actions extends React.Component<ActionsProps> {
     wrapperStyle: {},
   };
 
-  // static propTypes = {
-  //   onSend: PropTypes.func,
-  //   options: PropTypes.object,
-  //   optionTintColor: PropTypes.string,
-  //   icon: PropTypes.func,
-  //   onPressActionButton: PropTypes.func,
-  //   wrapperStyle: StylePropType,
-  //   containerStyle: StylePropType,
-  // };
-
   // static contextTypes = {
   //   actionSheet: PropTypes.func,
   // };
 
   onActionsPress = () => {
-    const { options } = this.props;
-    const optionKeys = Object.keys(options!);
-    const cancelButtonIndex = optionKeys.indexOf('Cancel');
-    this.context.actionSheet().showActionSheetWithOptions(
-      {
-        options: optionKeys,
-        cancelButtonIndex,
-        tintColor: this.props.optionTintColor,
-      },
-      (buttonIndex: number) => {
-        const key = optionKeys[buttonIndex];
-        if (key) {
-          options![key](this.props);
-        }
-      }
-    );
+    // const { options } = this.props;
+    // const optionKeys = Object.keys(options!);
+    // const cancelButtonIndex = optionKeys.indexOf('Cancel');
+    // this.context.actionSheet().showActionSheetWithOptions(
+    //   {
+    //     options: optionKeys,
+    //     cancelButtonIndex,
+    //     tintColor: this.props.optionTintColor,
+    //   },
+    //   (buttonIndex: number) => {
+    //     const key = optionKeys[buttonIndex];
+    //     if (key) {
+    //       options![key](this.props);
+    //     }
+    //   }
+    // );
   };
 
   renderIcon() {

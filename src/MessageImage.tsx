@@ -1,5 +1,3 @@
-// @ts-nocheck
-// import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
   Image,
@@ -10,11 +8,7 @@ import {
   StyleProp,
   ImageStyle,
 } from 'react-native';
-// TODO: support web
-// @ts-ignore
-// import Lightbox from 'react-native-lightbox';
 import { IMessage } from './Models';
-// import { StylePropType } from './utils';
 
 const styles = StyleSheet.create({
   container: {},
@@ -52,36 +46,21 @@ export default class MessageImage<
     lightboxProps: {},
   };
 
-  // static propTypes = {
-  //   currentMessage: PropTypes.object,
-  //   containerStyle: StylePropType,
-  //   imageStyle: StylePropType,
-  //   imageProps: PropTypes.object,
-  //   lightboxProps: PropTypes.object,
-  // };
   render() {
     const {
       containerStyle,
-      lightboxProps,
       imageProps,
       imageStyle,
       currentMessage,
     } = this.props;
-    if (!!currentMessage) {
+    if (currentMessage) {
       return (
         <View style={[styles.container, containerStyle]}>
-          {/* <Lightbox
-            activeProps={{
-              style: styles.imageActive,
-            }}
-            {...lightboxProps}
-          > */}
           <Image
             {...imageProps}
             style={[styles.image, imageStyle]}
             source={{ uri: currentMessage.image }}
           />
-          {/* </Lightbox> */}
         </View>
       );
     }

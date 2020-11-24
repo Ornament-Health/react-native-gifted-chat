@@ -1,8 +1,7 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
 import {
   Text,
-  Clipboard,
+  // Clipboard,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
@@ -27,7 +26,6 @@ import {
   IMessage,
   LeftRightStyle,
   Reply,
-  Omit,
   MessageVideoProps,
   MessageAudioProps,
 } from './Models';
@@ -207,78 +205,33 @@ export default class Bubble<
     containerToPreviousStyle: {},
   };
 
-  // static propTypes = {
-  //   user: PropTypes.object.isRequired,
-  //   touchableProps: PropTypes.object,
-  //   onLongPress: PropTypes.func,
-  //   renderMessageImage: PropTypes.func,
-  //   renderMessageVideo: PropTypes.func,
-  //   renderMessageAudio: PropTypes.func,
-  //   renderMessageText: PropTypes.func,
-  //   renderCustomView: PropTypes.func,
-  //   isCustomViewBottom: PropTypes.bool,
-  //   renderUsernameOnMessage: PropTypes.bool,
-  //   renderUsername: PropTypes.func,
-  //   renderTime: PropTypes.func,
-  //   renderTicks: PropTypes.func,
-  //   renderQuickReplies: PropTypes.func,
-  //   onQuickReply: PropTypes.func,
-  //   position: PropTypes.oneOf(['left', 'right']),
-  //   optionTitles: PropTypes.arrayOf(PropTypes.string),
-  //   currentMessage: PropTypes.object,
-  //   nextMessage: PropTypes.object,
-  //   previousMessage: PropTypes.object,
-  //   containerStyle: PropTypes.shape({
-  //     left: StylePropType,
-  //     right: StylePropType,
-  //   }),
-  //   wrapperStyle: PropTypes.shape({
-  //     left: StylePropType,
-  //     right: StylePropType,
-  //   }),
-  //   bottomContainerStyle: PropTypes.shape({
-  //     left: StylePropType,
-  //     right: StylePropType,
-  //   }),
-  //   tickStyle: StylePropType,
-  //   usernameStyle: StylePropType,
-  //   containerToNextStyle: PropTypes.shape({
-  //     left: StylePropType,
-  //     right: StylePropType,
-  //   }),
-  //   containerToPreviousStyle: PropTypes.shape({
-  //     left: StylePropType,
-  //     right: StylePropType,
-  //   }),
-  // };
-
   onLongPress = () => {
-    const { currentMessage } = this.props;
-    if (this.props.onLongPress) {
-      this.props.onLongPress(this.context, this.props.currentMessage);
-    } else if (currentMessage && currentMessage.text) {
-      const { optionTitles } = this.props;
-      const options =
-        optionTitles && optionTitles.length > 0
-          ? optionTitles.slice(0, 2)
-          : DEFAULT_OPTION_TITLES;
-      const cancelButtonIndex = options.length - 1;
-      this.context.actionSheet().showActionSheetWithOptions(
-        {
-          options,
-          cancelButtonIndex,
-        },
-        (buttonIndex: number) => {
-          switch (buttonIndex) {
-            case 0:
-              Clipboard.setString(currentMessage.text);
-              break;
-            default:
-              break;
-          }
-        }
-      );
-    }
+    // const { currentMessage } = this.props;
+    // if (this.props.onLongPress) {
+    //   this.props.onLongPress(this.context, this.props.currentMessage);
+    // } else if (currentMessage && currentMessage.text) {
+    //   const { optionTitles } = this.props;
+    //   const options =
+    //     optionTitles && optionTitles.length > 0
+    //       ? optionTitles.slice(0, 2)
+    //       : DEFAULT_OPTION_TITLES;
+    //   const cancelButtonIndex = options.length - 1;
+    //   this.context.actionSheet().showActionSheetWithOptions(
+    //     {
+    //       options,
+    //       cancelButtonIndex,
+    //     },
+    //     (buttonIndex: number) => {
+    //       switch (buttonIndex) {
+    //         case 0:
+    //           Clipboard.setString(currentMessage.text);
+    //           break;
+    //         default:
+    //           break;
+    //       }
+    //     }
+    //   );
+    // }
   };
 
   styledBubbleToNext() {
@@ -447,7 +400,7 @@ export default class Bubble<
       if (this.props.renderTime) {
         return this.props.renderTime(timeProps);
       }
-      return null; // <Time {...timeProps} />;
+      return <Time {...timeProps} />;
     }
     return null;
   }

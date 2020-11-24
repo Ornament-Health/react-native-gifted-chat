@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {
   Text,
@@ -78,16 +77,6 @@ export default class QuickReplies extends Component<
     quickReplyStyle: undefined,
   };
 
-  // static propTypes = {
-  //   currentMessage: PropTypes.object.isRequired,
-  //   onQuickReply: PropTypes.func,
-  //   color: PropTypes.string,
-  //   sendText: PropTypes.string,
-  //   keepReplies: PropTypes.bool,
-  //   renderQuickReplySend: PropTypes.func,
-  //   quickReplyStyle: StylePropType,
-  // };
-
   state = {
     replies: [],
   };
@@ -105,11 +94,11 @@ export default class QuickReplies extends Component<
 
         case 'checkbox': {
           if (replies.find(sameReply(reply))) {
-            this.setState({
-              replies: this.state.replies.filter(diffReply(reply)),
-            });
+            this.setState(state => ({
+              replies: state.replies.filter(diffReply(reply)),
+            }));
           } else {
-            this.setState({ replies: [...this.state.replies, reply] });
+            this.setState(state => ({ replies: [...state.replies, reply] }));
           }
           return;
         }
@@ -196,7 +185,7 @@ export default class QuickReplies extends Component<
               >
                 <Text
                   numberOfLines={10}
-                  ellipsizeMode={'tail'}
+                  ellipsizeMode="tail"
                   style={[
                     styles.quickReplyText,
                     { color: selected ? Color.white : color },

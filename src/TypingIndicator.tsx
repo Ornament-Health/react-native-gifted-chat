@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import { Animated, StyleSheet } from 'react-native';
-// import { TypingAnimation } from 'react-native-typing-animation';
 import { useUpdateLayoutEffect } from './hooks/useUpdateLayoutEffect';
 import Color from './Color';
+import Bubbles from './Bubbles';
 
 interface Props {
   isTyping?: boolean;
@@ -81,15 +81,7 @@ const TypingIndicator = ({ isTyping }: Props) => {
         },
       ]}
     >
-      {null}
-      {/* {isTyping ? (
-        <TypingAnimation
-          style={{ marginLeft: 6, marginTop: 7.2 }}
-          dotRadius={4}
-          dotMargin={5.5}
-          dotColor={'rgba(0, 0, 0, 0.38)'}
-        />
-      ) : null} */}
+      {isTyping ? <Bubbles size={4} /> : null}
     </Animated.View>
   );
 };
@@ -97,6 +89,8 @@ const TypingIndicator = ({ isTyping }: Props) => {
 const styles = StyleSheet.create({
   container: {
     marginLeft: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
     width: 45,
     borderRadius: 15,
     backgroundColor: Color.leftBubbleBackground,

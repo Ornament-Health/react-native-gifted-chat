@@ -1,21 +1,20 @@
 // @ts-nocheck
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Platform } from 'react-native';
-import { Bubble, GiftedChat, SystemMessage, IMessage, Send } from './src';
+import { Bubble, GiftedChat, SystemMessage, IMessage, Send } from '../src';
 
-import AccessoryBar from './example-expo/AccessoryBar';
-import CustomActions from './example-expo/CustomActions';
-import CustomView from './example-expo/CustomView';
-import NavBar from './example-expo/NavBar';
-import messagesData from './example-expo/data/messages';
-import earlierMessages from './example-expo/data/earlierMessages';
+import AccessoryBar from './AccessoryBar';
+import CustomActions from './CustomActions';
+import CustomView from './CustomView';
+import messagesData from './data/messages';
+import earlierMessages from './data/earlierMessages';
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: 'red' },
+  container: { flex: 1, height: 500, width: 400 },
 });
 
-const filterBotMessages = message =>
-  !message.system && message.user && message.user._id && message.user._id === 2;
+// const filterBotMessages = message =>
+//   !message.system && message.user && message.user._id && message.user._id === 2;
 const findStep = step => message => message._id === step;
 
 const user = {
@@ -29,7 +28,7 @@ const otherUser = {
   avatar: 'https://facebook.github.io/react/img/logo_og.png',
 };
 
-export default class App extends Component {
+export default class App extends Component<any, any> {
   state = {
     inverted: false,
     step: 0,
@@ -159,9 +158,9 @@ export default class App extends Component {
   };
 
   setIsTyping = () => {
-    this.setState({
-      isTyping: !this.state.isTyping,
-    });
+    this.setState(state => ({
+      isTyping: !state.isTyping,
+    }));
   };
 
   renderAccessory = () => (
@@ -236,7 +235,6 @@ export default class App extends Component {
         accessibilityLabel="main"
         testID="main"
       >
-        <NavBar />
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}
@@ -250,7 +248,7 @@ export default class App extends Component {
           onPressAvatar={() => alert('short press')}
           onQuickReply={this.onQuickReply}
           keyboardShouldPersistTaps="never"
-          renderAccessory={Platform.OS === 'web' ? null : this.renderAccessory}
+          renderAccessory={this.renderAccessory}
           renderActions={this.renderCustomActions}
           renderBubble={this.renderBubble}
           renderSystemMessage={this.renderSystemMessage}

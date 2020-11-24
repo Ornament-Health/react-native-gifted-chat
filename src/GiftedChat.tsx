@@ -1,11 +1,9 @@
-// import PropTypes from 'prop-types';
 import React, { RefObject } from 'react';
 import {
   Animated,
   Platform,
   StyleSheet,
   View,
-  Text,
   StyleProp,
   ViewStyle,
   SafeAreaView,
@@ -14,12 +12,7 @@ import {
   KeyboardAvoidingView,
   LayoutChangeEvent,
 } from 'react-native';
-// import {
-//   ActionSheetProvider,
-//   ActionSheetOptions,
-// } from '@expo/react-native-action-sheet';
 import uuid from 'uuid';
-// import { getBottomSpace } from 'react-native-iphone-x-helper';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 
@@ -296,71 +289,6 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
     maxComposerHeight: MAX_COMPOSER_HEIGHT,
     wrapInSafeArea: true,
   };
-
-  // static propTypes = {
-  //   messages: PropTypes.arrayOf(PropTypes.object),
-  //   messagesContainerStyle: utils.StylePropType,
-  //   text: PropTypes.string,
-  //   initialText: PropTypes.string,
-  //   placeholder: PropTypes.string,
-  //   disableComposer: PropTypes.bool,
-  //   messageIdGenerator: PropTypes.func,
-  //   user: PropTypes.object,
-  //   onSend: PropTypes.func,
-  //   locale: PropTypes.string,
-  //   timeFormat: PropTypes.string,
-  //   dateFormat: PropTypes.string,
-  //   isKeyboardInternallyHandled: PropTypes.bool,
-  //   loadEarlier: PropTypes.bool,
-  //   onLoadEarlier: PropTypes.func,
-  //   isLoadingEarlier: PropTypes.bool,
-  //   renderLoading: PropTypes.func,
-  //   renderLoadEarlier: PropTypes.func,
-  //   renderAvatar: PropTypes.func,
-  //   showUserAvatar: PropTypes.bool,
-  //   actionSheet: PropTypes.func,
-  //   onPressAvatar: PropTypes.func,
-  //   onLongPressAvatar: PropTypes.func,
-  //   renderUsernameOnMessage: PropTypes.bool,
-  //   renderAvatarOnTop: PropTypes.bool,
-  //   isCustomViewBottom: PropTypes.bool,
-  //   renderBubble: PropTypes.func,
-  //   renderSystemMessage: PropTypes.func,
-  //   onLongPress: PropTypes.func,
-  //   renderMessage: PropTypes.func,
-  //   renderMessageText: PropTypes.func,
-  //   renderMessageImage: PropTypes.func,
-  //   imageProps: PropTypes.object,
-  //   videoProps: PropTypes.object,
-  //   audioProps: PropTypes.object,
-  //   lightboxProps: PropTypes.object,
-  //   renderCustomView: PropTypes.func,
-  //   renderDay: PropTypes.func,
-  //   renderTime: PropTypes.func,
-  //   renderFooter: PropTypes.func,
-  //   renderChatEmpty: PropTypes.func,
-  //   renderChatFooter: PropTypes.func,
-  //   renderInputToolbar: PropTypes.func,
-  //   renderComposer: PropTypes.func,
-  //   renderActions: PropTypes.func,
-  //   renderSend: PropTypes.func,
-  //   renderAccessory: PropTypes.func,
-  //   onPressActionButton: PropTypes.func,
-  //   bottomOffset: PropTypes.number,
-  //   minInputToolbarHeight: PropTypes.number,
-  //   listViewProps: PropTypes.object,
-  //   keyboardShouldPersistTaps: PropTypes.oneOf(['always', 'never', 'handled']),
-  //   onInputTextChanged: PropTypes.func,
-  //   maxInputLength: PropTypes.number,
-  //   forceGetKeyboardHeight: PropTypes.bool,
-  //   inverted: PropTypes.bool,
-  //   textInputProps: PropTypes.object,
-  //   extraData: PropTypes.object,
-  //   minComposerHeight: PropTypes.number,
-  //   maxComposerHeight: PropTypes.number,
-  //   alignTop: PropTypes.bool,
-  //   wrapInSafeArea: PropTypes.bool,
-  // };
 
   static append<TMessage extends IMessage>(
     currentMessages: TMessage[] = [],
@@ -795,11 +723,12 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
     }
   }
 
-  onInitialLayoutViewLayout = (e: any) => {
-    const { layout } = e.nativeEvent;
-    if (layout.height <= 0) {
-      return;
-    }
+  onInitialLayoutViewLayout = ({ nativeEvent }: LayoutChangeEvent) => {
+    const { layout } = nativeEvent;
+    // WTF?
+    // if (layout.height <= 0) {
+    //   return;
+    // }
     this.notifyInputTextReset();
     this.setMaxHeight(layout.height);
     const newComposerHeight = this.props.minComposerHeight;
@@ -818,9 +747,9 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
   onMainViewLayout = ({ nativeEvent }: LayoutChangeEvent) => {
     // fix an issue when keyboard is dismissing during the initialization
     const { layout } = nativeEvent;
-    console.log(layout.height);
     if (
-      this.getMaxHeight() !== layout.height ||
+      // Was OR ||
+      this.getMaxHeight() !== layout.height &&
       this.getIsFirstLayout() === true
     ) {
       this.setMaxHeight(layout.height);
@@ -894,7 +823,6 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
     return (
       <View style={styles.container} onLayout={this.onInitialLayoutViewLayout}>
         {this.renderLoading()}
-        <Text>chat</Text>
       </View>
     );
   }
@@ -903,7 +831,6 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'blue',
   },
   safeArea: {
     flex: 1,

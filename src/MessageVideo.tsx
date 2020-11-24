@@ -1,6 +1,6 @@
-import React from 'react'
-import Color from './Color'
-import { View, Text } from 'react-native'
+import React from 'react';
+import Color from './Color';
+import { View, Text } from 'react-native';
 
 export default (_props: any) => (
   <View style={{ padding: 20 }}>
@@ -12,4 +12,4 @@ export default (_props: any) => (
       prop.
     </Text>
   </View>
-)
+);

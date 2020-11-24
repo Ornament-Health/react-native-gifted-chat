@@ -1,6 +1,5 @@
-// @ts-nocheck
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
 import {
   getLocationAsync,
@@ -29,13 +28,14 @@ export default class AccessoryBar extends React.Component<any> {
 }
 
 const Button = ({
-  onPress,
+  onPress = () => {},
   size = 30,
   color = 'rgba(0,0,0,0.5)',
+  name = '',
   ...props
 }) => (
   <TouchableOpacity onPress={onPress}>
-    {/* <MaterialIcons size={size} color={color} {...props} /> */}
+    <Text {...props}>{name}</Text>
   </TouchableOpacity>
 );
 

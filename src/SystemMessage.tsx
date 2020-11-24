@@ -7,10 +7,8 @@ import {
   StyleProp,
   TextStyle,
 } from 'react-native';
-// import PropTypes from 'prop-types';
 import Color from './Color';
 import { IMessage } from './Models';
-// import { StylePropType } from './utils';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,13 +44,6 @@ export default class SystemMessage<
     wrapperStyle: {},
     textStyle: {},
   };
-
-  // static propTypes = {
-  //   currentMessage: PropTypes.object,
-  //   containerStyle: StylePropType,
-  //   wrapperStyle: StylePropType,
-  //   textStyle: StylePropType,
-  // };
 
   render() {
     const {

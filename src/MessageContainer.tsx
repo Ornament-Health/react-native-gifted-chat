@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React, { RefObject } from 'react';
 
 import {
@@ -118,36 +117,11 @@ export default class MessageContainer<
     isLoadingEarlier: false,
   };
 
-  // static propTypes = {
-  //   messages: PropTypes.arrayOf(PropTypes.object),
-  //   isTyping: PropTypes.bool,
-  //   user: PropTypes.object,
-  //   renderChatEmpty: PropTypes.func,
-  //   renderFooter: PropTypes.func,
-  //   renderMessage: PropTypes.func,
-  //   renderLoadEarlier: PropTypes.func,
-  //   onLoadEarlier: PropTypes.func,
-  //   listViewProps: PropTypes.object,
-  //   inverted: PropTypes.bool,
-  //   loadEarlier: PropTypes.bool,
-  //   invertibleScrollViewProps: PropTypes.object,
-  //   extraData: PropTypes.object,
-  //   scrollToBottom: PropTypes.bool,
-  //   scrollToBottomOffset: PropTypes.number,
-  //   scrollToBottomComponent: PropTypes.func,
-  //   alignTop: PropTypes.bool,
-  //   scrollToBottomStyle: StylePropType,
-  //   infiniteScroll: PropTypes.bool,
-  // };
-
   state = {
     showScrollBottom: false,
   };
 
   renderTypingIndicator = () => {
-    if (Platform.OS === 'web') {
-      return null;
-    }
     return <TypingIndicator isTyping={this.props.isTyping || false} />;
   };
 

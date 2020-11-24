@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
 import {
   StyleSheet,
@@ -13,7 +12,6 @@ import Composer from './Composer';
 import Send from './Send';
 import Actions from './Actions';
 import Color from './Color';
-// import { StylePropType } from './utils';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,17 +58,6 @@ export default class InputToolbar extends React.Component<
     accessoryStyle: {},
     onPressActionButton: () => {},
   };
-
-  // static propTypes = {
-  //   renderAccessory: PropTypes.func,
-  //   renderActions: PropTypes.func,
-  //   renderSend: PropTypes.func,
-  //   renderComposer: PropTypes.func,
-  //   onPressActionButton: PropTypes.func,
-  //   containerStyle: StylePropType,
-  //   primaryStyle: StylePropType,
-  //   accessoryStyle: StylePropType,
-  // };
 
   state = {
     position: 'absolute',

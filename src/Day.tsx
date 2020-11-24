@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import {
   StyleSheet,
@@ -64,18 +63,6 @@ export default class Day<
     dateFormat: DATE_FORMAT,
   };
 
-  // static propTypes = {
-  //   currentMessage: PropTypes.object,
-  //   previousMessage: PropTypes.object,
-  //   nextMessage: PropTypes.object,
-  //   inverted: PropTypes.bool,
-  //   containerStyle: StylePropType,
-  //   wrapperStyle: StylePropType,
-  //   textStyle: StylePropType,
-  //   textProps: PropTypes.object,
-  //   dateFormat: PropTypes.string,
-  // };
-
   render() {
     const {
       dateFormat,
@@ -93,7 +80,7 @@ export default class Day<
           <View style={wrapperStyle}>
             <Text style={[styles.text, textStyle]} {...textProps}>
               {dayjs(currentMessage.createdAt)
-                .locale(this.context.getLocale())
+                .locale('en') // (this.context.getLocale())
                 .format(dateFormat)}
             </Text>
           </View>

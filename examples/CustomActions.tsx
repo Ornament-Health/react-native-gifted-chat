@@ -1,13 +1,6 @@
 // @ts-nocheck
-// import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewPropTypes,
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import {
   getLocationAsync,
@@ -15,7 +8,16 @@ import {
   takePictureAsync,
 } from './mediaUtils';
 
-export default class CustomActions extends React.Component {
+export default class CustomActions extends React.Component<any> {
+  static defaultProps = {
+    onSend: () => {},
+    options: {},
+    renderIcon: null,
+    containerStyle: {},
+    wrapperStyle: {},
+    iconTextStyle: {},
+  };
+
   onActionsPress = () => {
     const options = [
       'Choose From Library',
@@ -29,7 +31,7 @@ export default class CustomActions extends React.Component {
         options,
         cancelButtonIndex,
       },
-      async buttonIndex => {
+      async (buttonIndex: number) => {
         const { onSend } = this.props;
         switch (buttonIndex) {
           case 0:
@@ -90,19 +92,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-// CustomActions.contextTypes = {
-//   actionSheet: PropTypes.func,
-// };
-
-CustomActions.defaultProps = {
-  onSend: () => {},
-  options: {},
-  renderIcon: null,
-  containerStyle: {},
-  wrapperStyle: {},
-  iconTextStyle: {},
-};
 
 // CustomActions.propTypes = {
 //   onSend: PropTypes.func,
