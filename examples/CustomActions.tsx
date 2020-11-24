@@ -19,33 +19,33 @@ export default class CustomActions extends React.Component<any> {
   };
 
   onActionsPress = () => {
-    const options = [
-      'Choose From Library',
-      'Take Picture',
-      'Send Location',
-      'Cancel',
-    ];
-    const cancelButtonIndex = options.length - 1;
-    this.context.actionSheet().showActionSheetWithOptions(
-      {
-        options,
-        cancelButtonIndex,
-      },
-      async (buttonIndex: number) => {
-        const { onSend } = this.props;
-        switch (buttonIndex) {
-          case 0:
-            pickImageAsync(onSend);
-            return;
-          case 1:
-            takePictureAsync(onSend);
-            return;
-          case 2:
-            getLocationAsync(onSend);
-          default:
-        }
-      }
-    );
+    // const options = [
+    //   'Choose From Library',
+    //   'Take Picture',
+    //   'Send Location',
+    //   'Cancel',
+    // ];
+    // const cancelButtonIndex = options.length - 1;
+    // this.context.actionSheet().showActionSheetWithOptions(
+    //   {
+    //     options,
+    //     cancelButtonIndex,
+    //   },
+    //   async (buttonIndex: number) => {
+    //     const { onSend } = this.props;
+    //     switch (buttonIndex) {
+    //       case 0:
+    //         pickImageAsync(onSend);
+    //         return;
+    //       case 1:
+    //         takePictureAsync(onSend);
+    //         return;
+    //       case 2:
+    //         getLocationAsync(onSend);
+    //       default:
+    //     }
+    //   }
+    // );
   };
 
   renderIcon = () => {

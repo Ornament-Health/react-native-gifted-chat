@@ -519,7 +519,7 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
   }
 
   safeAreaSupport = (bottomOffset?: number) => {
-    return bottomOffset != null ? bottomOffset : 100; // getBottomSpace();
+    return bottomOffset != null ? bottomOffset : utils.getBottomSpace();
   };
 
   /**
