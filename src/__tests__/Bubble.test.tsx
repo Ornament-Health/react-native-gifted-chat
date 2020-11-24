@@ -1,8 +1,8 @@
-import 'react-native'
-import React from 'react'
-import createComponentWithContext from './context'
+import 'react-native';
+import React from 'react';
+import createComponentWithContext from './context';
 
-import { Bubble } from '../GiftedChat'
+import { Bubble } from '../GiftedChat';
 
 it('should render <Bubble /> and compare with snapshot', () => {
   const tree = createComponentWithContext(
@@ -14,8 +14,8 @@ it('should render <Bubble /> and compare with snapshot', () => {
         createdAt: 1554744013721,
         user: { _id: 1 },
       }}
-    />,
-  ).toJSON()
+    />
+  ).toJSON();
 
-  expect(tree).toMatchSnapshot()
-})
+  expect(tree).toMatchSnapshot();
+});

@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "outDir": "./lib",
+    "outDir": "./dist",
     "strict": true,
     "jsx": "react-native",
     "target": "es2019",
-    "module": "es6",
+    "module": "es2015",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
@@ -26,9 +26,10 @@
     "resolveJsonModule": true,
     "noFallthroughCasesInSwitch": true,
     "strictPropertyInitialization": false,
-    "lib": ["es6"],
+    "lib": ["es2017", "dom"],
+    "removeComments": true,
     "typeRoots": ["./node_modules/@types", "./@types"]
   },
-  "include": ["src", "./types.d.ts"],
-  "exclude": ["node_modules", "src/__tests__"]
+  "include": ["src"],
+  "exclude": ["node_modules", "src/__tests__/**/*"]
 }

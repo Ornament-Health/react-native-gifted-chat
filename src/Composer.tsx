@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import { Platform, StyleSheet, TextInput, TextInputProps } from 'react-native'
-import { MIN_COMPOSER_HEIGHT, DEFAULT_PLACEHOLDER } from './Constant'
-import Color from './Color'
-import { StylePropType } from './utils'
+import React from 'react';
+import { Platform, StyleSheet, TextInput, TextInputProps } from 'react-native';
+import { MIN_COMPOSER_HEIGHT, DEFAULT_PLACEHOLDER } from './Constant';
+import Color from './Color';
 
 const styles = StyleSheet.create({
   textInput: {
@@ -28,21 +26,21 @@ const styles = StyleSheet.create({
       web: 4,
     }),
   },
-})
+});
 
 export interface ComposerProps {
-  composerHeight?: number
-  text?: string
-  placeholder?: string
-  placeholderTextColor?: string
-  textInputProps?: Partial<TextInputProps>
-  textInputStyle?: TextInputProps['style']
-  textInputAutoFocus?: boolean
-  keyboardAppearance?: TextInputProps['keyboardAppearance']
-  multiline?: boolean
-  disableComposer?: boolean
-  onTextChanged?(text: string): void
-  onInputSizeChanged?(contentSize: { width: number; height: number }): void
+  composerHeight?: number;
+  text?: string;
+  placeholder?: string;
+  placeholderTextColor?: string;
+  textInputProps?: Partial<TextInputProps>;
+  textInputStyle?: TextInputProps['style'];
+  textInputAutoFocus?: boolean;
+  keyboardAppearance?: TextInputProps['keyboardAppearance'];
+  multiline?: boolean;
+  disableComposer?: boolean;
+  onTextChanged?(text: string): void;
+  onInputSizeChanged?(contentSize: { width: number; height: number }): void;
 }
 
 export default class Composer extends React.Component<ComposerProps> {
@@ -59,31 +57,16 @@ export default class Composer extends React.Component<ComposerProps> {
     keyboardAppearance: 'default',
     onTextChanged: () => {},
     onInputSizeChanged: () => {},
-  }
+  };
 
-  static propTypes = {
-    composerHeight: PropTypes.number,
-    text: PropTypes.string,
-    placeholder: PropTypes.string,
-    placeholderTextColor: PropTypes.string,
-    textInputProps: PropTypes.object,
-    onTextChanged: PropTypes.func,
-    onInputSizeChanged: PropTypes.func,
-    multiline: PropTypes.bool,
-    disableComposer: PropTypes.bool,
-    textInputStyle: StylePropType,
-    textInputAutoFocus: PropTypes.bool,
-    keyboardAppearance: PropTypes.string,
-  }
-
-  contentSize?: { width: number; height: number } = undefined
+  contentSize?: { width: number; height: number } = undefined;
 
   onContentSizeChange = (e: any) => {
-    const { contentSize } = e.nativeEvent
+    const { contentSize } = e.nativeEvent;
 
     // Support earlier versions of React Native on Android.
     if (!contentSize) {
-      return
+      return;
     }
 
     if (
@@ -92,14 +75,14 @@ export default class Composer extends React.Component<ComposerProps> {
         (this.contentSize.width !== contentSize.width ||
           this.contentSize.height !== contentSize.height))
     ) {
-      this.contentSize = contentSize
-      this.props.onInputSizeChanged!(this.contentSize!)
+      this.contentSize = contentSize;
+      this.props.onInputSizeChanged!(this.contentSize!);
     }
-  }
+  };
 
   onChangeText = (text: string) => {
-    this.props.onTextChanged!(text)
-  }
+    this.props.onTextChanged!(text);
+  };
 
   render() {
     return (
@@ -131,10 +114,10 @@ export default class Composer extends React.Component<ComposerProps> {
         autoFocus={this.props.textInputAutoFocus}
         value={this.props.text}
         enablesReturnKeyAutomatically
-        underlineColorAndroid='transparent'
+        underlineColorAndroid="transparent"
         keyboardAppearance={this.props.keyboardAppearance}
         {...this.props.textInputProps}
       />
-    )
+    );
   }
 }

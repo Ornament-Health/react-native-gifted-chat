@@ -11,3 +11,5 @@ Exponent-*.app
 lib/
 coverage/
 web-build/
+/build
+/dist

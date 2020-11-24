@@ -1,6 +1,7 @@
 module.exports = function (api) {
-  api.cache(true)
+  api.cache(true);
   return {
-    presets: ['babel-preset-expo', '@babel/preset-typescript'],
-  }
-}
+    presets: ['module:metro-react-native-babel-preset'],
+    plugins: ['react-native-web'],
+  };
+};
