@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
-import React from 'react'
+// import PropTypes from 'prop-types';
+import React from 'react';
 import {
   Text,
   Clipboard,
@@ -9,19 +9,19 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
-} from 'react-native'
+} from 'react-native';
 
-import QuickReplies from './QuickReplies'
+import QuickReplies from './QuickReplies';
 
-import MessageText from './MessageText'
-import MessageImage from './MessageImage'
-import MessageVideo from './MessageVideo'
-import MessageAudio from './MessageAudio'
+import MessageText from './MessageText';
+import MessageImage from './MessageImage';
+import MessageVideo from './MessageVideo';
+import MessageAudio from './MessageAudio';
 
-import Time from './Time'
-import Color from './Color'
+import Time from './Time';
+import Color from './Color';
 
-import { StylePropType, isSameUser, isSameDay } from './utils'
+import { isSameUser, isSameDay } from './utils';
 import {
   User,
   IMessage,
@@ -30,7 +30,7 @@ import {
   Omit,
   MessageVideoProps,
   MessageAudioProps,
-} from './Models'
+} from './Models';
 
 const styles = {
   left: StyleSheet.create({
@@ -101,74 +101,80 @@ const styles = {
       marginHorizontal: 10,
     },
   }),
-}
+};
 
-const DEFAULT_OPTION_TITLES = ['Copy Text', 'Cancel']
+const DEFAULT_OPTION_TITLES = ['Copy Text', 'Cancel'];
 
 export type RenderMessageImageProps<TMessage extends IMessage> = Omit<
   BubbleProps<TMessage>,
   'containerStyle' | 'wrapperStyle'
 > &
-  MessageImage['props']
+  MessageImage['props'];
 
 export type RenderMessageVideoProps<TMessage extends IMessage> = Omit<
   BubbleProps<TMessage>,
   'containerStyle' | 'wrapperStyle'
 > &
-  MessageVideoProps<TMessage>
+  MessageVideoProps<TMessage>;
 
 export type RenderMessageAudioProps<TMessage extends IMessage> = Omit<
   BubbleProps<TMessage>,
   'containerStyle' | 'wrapperStyle'
 > &
-  MessageAudioProps<TMessage>
+  MessageAudioProps<TMessage>;
 
 export type RenderMessageTextProps<TMessage extends IMessage> = Omit<
   BubbleProps<TMessage>,
   'containerStyle' | 'wrapperStyle'
 > &
-  MessageText['props']
+  MessageText['props'];
 
 export interface BubbleProps<TMessage extends IMessage> {
-  user?: User
-  touchableProps?: object
-  renderUsernameOnMessage?: boolean
-  isCustomViewBottom?: boolean
-  inverted?: boolean
-  position: 'left' | 'right'
-  currentMessage?: TMessage
-  nextMessage?: TMessage
-  previousMessage?: TMessage
-  optionTitles?: string[]
-  containerStyle?: LeftRightStyle<ViewStyle>
-  wrapperStyle?: LeftRightStyle<ViewStyle>
-  textStyle?: LeftRightStyle<TextStyle>
-  bottomContainerStyle?: LeftRightStyle<ViewStyle>
-  tickStyle?: StyleProp<TextStyle>
-  containerToNextStyle?: LeftRightStyle<ViewStyle>
-  containerToPreviousStyle?: LeftRightStyle<ViewStyle>
-  usernameStyle?: TextStyle
-  quickReplyStyle?: StyleProp<ViewStyle>
-  onLongPress?(context?: any, message?: any): void
-  onQuickReply?(replies: Reply[]): void
-  renderMessageImage?(props: RenderMessageImageProps<TMessage>): React.ReactNode
-  renderMessageVideo?(props: RenderMessageVideoProps<TMessage>): React.ReactNode
-  renderMessageAudio?(props: RenderMessageAudioProps<TMessage>): React.ReactNode
-  renderMessageText?(props: RenderMessageTextProps<TMessage>): React.ReactNode
-  renderCustomView?(bubbleProps: BubbleProps<TMessage>): React.ReactNode
-  renderTime?(timeProps: Time['props']): React.ReactNode
-  renderTicks?(currentMessage: TMessage): React.ReactNode
-  renderUsername?(): React.ReactNode
-  renderQuickReplySend?(): React.ReactNode
-  renderQuickReplies?(quickReplies: QuickReplies['props']): React.ReactNode
+  user?: User;
+  touchableProps?: object;
+  renderUsernameOnMessage?: boolean;
+  isCustomViewBottom?: boolean;
+  inverted?: boolean;
+  position: 'left' | 'right';
+  currentMessage?: TMessage;
+  nextMessage?: TMessage;
+  previousMessage?: TMessage;
+  optionTitles?: string[];
+  containerStyle?: LeftRightStyle<ViewStyle>;
+  wrapperStyle?: LeftRightStyle<ViewStyle>;
+  textStyle?: LeftRightStyle<TextStyle>;
+  bottomContainerStyle?: LeftRightStyle<ViewStyle>;
+  tickStyle?: StyleProp<TextStyle>;
+  containerToNextStyle?: LeftRightStyle<ViewStyle>;
+  containerToPreviousStyle?: LeftRightStyle<ViewStyle>;
+  usernameStyle?: TextStyle;
+  quickReplyStyle?: StyleProp<ViewStyle>;
+  onLongPress?(context?: any, message?: any): void;
+  onQuickReply?(replies: Reply[]): void;
+  renderMessageImage?(
+    props: RenderMessageImageProps<TMessage>
+  ): React.ReactNode;
+  renderMessageVideo?(
+    props: RenderMessageVideoProps<TMessage>
+  ): React.ReactNode;
+  renderMessageAudio?(
+    props: RenderMessageAudioProps<TMessage>
+  ): React.ReactNode;
+  renderMessageText?(props: RenderMessageTextProps<TMessage>): React.ReactNode;
+  renderCustomView?(bubbleProps: BubbleProps<TMessage>): React.ReactNode;
+  renderTime?(timeProps: Time['props']): React.ReactNode;
+  renderTicks?(currentMessage: TMessage): React.ReactNode;
+  renderUsername?(): React.ReactNode;
+  renderQuickReplySend?(): React.ReactNode;
+  renderQuickReplies?(quickReplies: QuickReplies['props']): React.ReactNode;
 }
 
 export default class Bubble<
   TMessage extends IMessage = IMessage
 > extends React.Component<BubbleProps<TMessage>> {
-  static contextTypes = {
-    actionSheet: PropTypes.func,
-  }
+  // static contextTypes = {
+  //   actionSheet: PropTypes.func,
+  // };
 
   static defaultProps = {
     touchableProps: {},
@@ -199,64 +205,64 @@ export default class Bubble<
     usernameStyle: {},
     containerToNextStyle: {},
     containerToPreviousStyle: {},
-  }
+  };
 
-  static propTypes = {
-    user: PropTypes.object.isRequired,
-    touchableProps: PropTypes.object,
-    onLongPress: PropTypes.func,
-    renderMessageImage: PropTypes.func,
-    renderMessageVideo: PropTypes.func,
-    renderMessageAudio: PropTypes.func,
-    renderMessageText: PropTypes.func,
-    renderCustomView: PropTypes.func,
-    isCustomViewBottom: PropTypes.bool,
-    renderUsernameOnMessage: PropTypes.bool,
-    renderUsername: PropTypes.func,
-    renderTime: PropTypes.func,
-    renderTicks: PropTypes.func,
-    renderQuickReplies: PropTypes.func,
-    onQuickReply: PropTypes.func,
-    position: PropTypes.oneOf(['left', 'right']),
-    optionTitles: PropTypes.arrayOf(PropTypes.string),
-    currentMessage: PropTypes.object,
-    nextMessage: PropTypes.object,
-    previousMessage: PropTypes.object,
-    containerStyle: PropTypes.shape({
-      left: StylePropType,
-      right: StylePropType,
-    }),
-    wrapperStyle: PropTypes.shape({
-      left: StylePropType,
-      right: StylePropType,
-    }),
-    bottomContainerStyle: PropTypes.shape({
-      left: StylePropType,
-      right: StylePropType,
-    }),
-    tickStyle: StylePropType,
-    usernameStyle: StylePropType,
-    containerToNextStyle: PropTypes.shape({
-      left: StylePropType,
-      right: StylePropType,
-    }),
-    containerToPreviousStyle: PropTypes.shape({
-      left: StylePropType,
-      right: StylePropType,
-    }),
-  }
+  // static propTypes = {
+  //   user: PropTypes.object.isRequired,
+  //   touchableProps: PropTypes.object,
+  //   onLongPress: PropTypes.func,
+  //   renderMessageImage: PropTypes.func,
+  //   renderMessageVideo: PropTypes.func,
+  //   renderMessageAudio: PropTypes.func,
+  //   renderMessageText: PropTypes.func,
+  //   renderCustomView: PropTypes.func,
+  //   isCustomViewBottom: PropTypes.bool,
+  //   renderUsernameOnMessage: PropTypes.bool,
+  //   renderUsername: PropTypes.func,
+  //   renderTime: PropTypes.func,
+  //   renderTicks: PropTypes.func,
+  //   renderQuickReplies: PropTypes.func,
+  //   onQuickReply: PropTypes.func,
+  //   position: PropTypes.oneOf(['left', 'right']),
+  //   optionTitles: PropTypes.arrayOf(PropTypes.string),
+  //   currentMessage: PropTypes.object,
+  //   nextMessage: PropTypes.object,
+  //   previousMessage: PropTypes.object,
+  //   containerStyle: PropTypes.shape({
+  //     left: StylePropType,
+  //     right: StylePropType,
+  //   }),
+  //   wrapperStyle: PropTypes.shape({
+  //     left: StylePropType,
+  //     right: StylePropType,
+  //   }),
+  //   bottomContainerStyle: PropTypes.shape({
+  //     left: StylePropType,
+  //     right: StylePropType,
+  //   }),
+  //   tickStyle: StylePropType,
+  //   usernameStyle: StylePropType,
+  //   containerToNextStyle: PropTypes.shape({
+  //     left: StylePropType,
+  //     right: StylePropType,
+  //   }),
+  //   containerToPreviousStyle: PropTypes.shape({
+  //     left: StylePropType,
+  //     right: StylePropType,
+  //   }),
+  // };
 
   onLongPress = () => {
-    const { currentMessage } = this.props
+    const { currentMessage } = this.props;
     if (this.props.onLongPress) {
-      this.props.onLongPress(this.context, this.props.currentMessage)
+      this.props.onLongPress(this.context, this.props.currentMessage);
     } else if (currentMessage && currentMessage.text) {
-      const { optionTitles } = this.props
+      const { optionTitles } = this.props;
       const options =
         optionTitles && optionTitles.length > 0
           ? optionTitles.slice(0, 2)
-          : DEFAULT_OPTION_TITLES
-      const cancelButtonIndex = options.length - 1
+          : DEFAULT_OPTION_TITLES;
+      const cancelButtonIndex = options.length - 1;
       this.context.actionSheet().showActionSheetWithOptions(
         {
           options,
@@ -265,15 +271,15 @@ export default class Bubble<
         (buttonIndex: number) => {
           switch (buttonIndex) {
             case 0:
-              Clipboard.setString(currentMessage.text)
-              break
+              Clipboard.setString(currentMessage.text);
+              break;
             default:
-              break
+              break;
           }
-        },
-      )
+        }
+      );
     }
-  }
+  };
 
   styledBubbleToNext() {
     const {
@@ -281,7 +287,7 @@ export default class Bubble<
       nextMessage,
       position,
       containerToNextStyle,
-    } = this.props
+    } = this.props;
     if (
       currentMessage &&
       nextMessage &&
@@ -292,9 +298,9 @@ export default class Bubble<
       return [
         styles[position].containerToNext,
         containerToNextStyle && containerToNextStyle[position],
-      ]
+      ];
     }
-    return null
+    return null;
   }
 
   styledBubbleToPrevious() {
@@ -303,7 +309,7 @@ export default class Bubble<
       previousMessage,
       position,
       containerToPreviousStyle,
-    } = this.props
+    } = this.props;
     if (
       currentMessage &&
       previousMessage &&
@@ -314,9 +320,9 @@ export default class Bubble<
       return [
         styles[position].containerToPrevious,
         containerToPreviousStyle && containerToPreviousStyle[position],
-      ]
+      ];
     }
-    return null
+    return null;
   }
 
   renderQuickReplies() {
@@ -326,11 +332,11 @@ export default class Bubble<
       nextMessage,
       renderQuickReplySend,
       quickReplyStyle,
-    } = this.props
+    } = this.props;
     if (currentMessage && currentMessage.quickReplies) {
-      const { containerStyle, wrapperStyle, ...quickReplyProps } = this.props
+      const { containerStyle, wrapperStyle, ...quickReplyProps } = this.props;
       if (this.props.renderQuickReplies) {
-        return this.props.renderQuickReplies(quickReplyProps)
+        return this.props.renderQuickReplies(quickReplyProps);
       }
       return (
         <QuickReplies
@@ -342,9 +348,9 @@ export default class Bubble<
             quickReplyStyle,
           }}
         />
-      )
+      );
     }
-    return null
+    return null;
   }
 
   renderMessageText() {
@@ -354,52 +360,52 @@ export default class Bubble<
         wrapperStyle,
         optionTitles,
         ...messageTextProps
-      } = this.props
+      } = this.props;
       if (this.props.renderMessageText) {
-        return this.props.renderMessageText(messageTextProps)
+        return this.props.renderMessageText(messageTextProps);
       }
-      return <MessageText {...messageTextProps} />
+      return <MessageText {...messageTextProps} />;
     }
-    return null
+    return null;
   }
 
   renderMessageImage() {
     if (this.props.currentMessage && this.props.currentMessage.image) {
-      const { containerStyle, wrapperStyle, ...messageImageProps } = this.props
+      const { containerStyle, wrapperStyle, ...messageImageProps } = this.props;
       if (this.props.renderMessageImage) {
-        return this.props.renderMessageImage(messageImageProps)
+        return this.props.renderMessageImage(messageImageProps);
       }
-      return <MessageImage {...messageImageProps} />
+      return <MessageImage {...messageImageProps} />;
     }
-    return null
+    return null;
   }
 
   renderMessageVideo() {
     if (this.props.currentMessage && this.props.currentMessage.video) {
-      const { containerStyle, wrapperStyle, ...messageVideoProps } = this.props
+      const { containerStyle, wrapperStyle, ...messageVideoProps } = this.props;
       if (this.props.renderMessageVideo) {
-        return this.props.renderMessageVideo(messageVideoProps)
+        return this.props.renderMessageVideo(messageVideoProps);
       }
-      return <MessageVideo {...messageVideoProps} />
+      return <MessageVideo {...messageVideoProps} />;
     }
-    return null
+    return null;
   }
 
   renderMessageAudio() {
     if (this.props.currentMessage && this.props.currentMessage.audio) {
-      const { containerStyle, wrapperStyle, ...messageAudioProps } = this.props
+      const { containerStyle, wrapperStyle, ...messageAudioProps } = this.props;
       if (this.props.renderMessageAudio) {
-        return this.props.renderMessageAudio(messageAudioProps)
+        return this.props.renderMessageAudio(messageAudioProps);
       }
-      return <MessageAudio {...messageAudioProps} />
+      return <MessageAudio {...messageAudioProps} />;
     }
-    return null
+    return null;
   }
 
   renderTicks() {
-    const { currentMessage, renderTicks, user } = this.props
+    const { currentMessage, renderTicks, user } = this.props;
     if (renderTicks && currentMessage) {
-      return renderTicks(currentMessage)
+      return renderTicks(currentMessage);
     }
     if (
       currentMessage &&
@@ -407,7 +413,7 @@ export default class Bubble<
       currentMessage.user &&
       currentMessage.user._id !== user._id
     ) {
-      return null
+      return null;
     }
     if (
       currentMessage &&
@@ -425,9 +431,9 @@ export default class Bubble<
             <Text style={[styles.content.tick, this.props.tickStyle]}>🕓</Text>
           )}
         </View>
-      )
+      );
     }
-    return null
+    return null;
   }
 
   renderTime() {
@@ -437,20 +443,20 @@ export default class Bubble<
         wrapperStyle,
         textStyle,
         ...timeProps
-      } = this.props
+      } = this.props;
       if (this.props.renderTime) {
-        return this.props.renderTime(timeProps)
+        return this.props.renderTime(timeProps);
       }
-      return <Time {...timeProps} />
+      return null; // <Time {...timeProps} />;
     }
-    return null
+    return null;
   }
 
   renderUsername() {
-    const { currentMessage, user } = this.props
+    const { currentMessage, user } = this.props;
     if (this.props.renderUsernameOnMessage && currentMessage) {
       if (user && currentMessage.user._id === user._id) {
-        return null
+        return null;
       }
       return (
         <View style={styles.content.usernameView}>
@@ -462,16 +468,16 @@ export default class Bubble<
             ~ {currentMessage.user.name}
           </Text>
         </View>
-      )
+      );
     }
-    return null
+    return null;
   }
 
   renderCustomView() {
     if (this.props.renderCustomView) {
-      return this.props.renderCustomView(this.props)
+      return this.props.renderCustomView(this.props);
     }
-    return null
+    return null;
   }
 
   renderBubbleContent() {
@@ -491,7 +497,7 @@ export default class Bubble<
         {this.renderMessageAudio()}
         {this.renderMessageText()}
       </View>
-    )
+    );
   }
 
   render() {
@@ -500,7 +506,7 @@ export default class Bubble<
       containerStyle,
       wrapperStyle,
       bottomContainerStyle,
-    } = this.props
+    } = this.props;
     return (
       <View
         style={[
@@ -518,7 +524,7 @@ export default class Bubble<
         >
           <TouchableWithoutFeedback
             onLongPress={this.onLongPress}
-            accessibilityTraits='text'
+            accessibilityTraits="text"
             {...this.props.touchableProps}
           >
             <View>
@@ -538,6 +544,6 @@ export default class Bubble<
         </View>
         {this.renderQuickReplies()}
       </View>
-    )
+    );
   }
 }

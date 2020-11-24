@@ -1,2 +1,2 @@
-import MapView from 'react-native-web-maps'
-export default MapView
+// import MapView from 'react-native-web-maps'
+// export default MapView

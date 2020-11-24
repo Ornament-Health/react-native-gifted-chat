@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+// @ts-nocheck
+// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import {
   Image,
   StyleSheet,
@@ -8,12 +9,12 @@ import {
   ViewStyle,
   StyleProp,
   ImageStyle,
-} from 'react-native'
+} from 'react-native';
 // TODO: support web
 // @ts-ignore
-import Lightbox from 'react-native-lightbox'
-import { IMessage } from './Models'
-import { StylePropType } from './utils'
+// import Lightbox from 'react-native-lightbox';
+import { IMessage } from './Models';
+// import { StylePropType } from './utils';
 
 const styles = StyleSheet.create({
   container: {},
@@ -28,14 +29,14 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'contain',
   },
-})
+});
 
 export interface MessageImageProps<TMessage extends IMessage> {
-  currentMessage?: TMessage
-  containerStyle?: StyleProp<ViewStyle>
-  imageStyle?: StyleProp<ImageStyle>
-  imageProps?: Partial<ImageProps>
-  lightboxProps?: object
+  currentMessage?: TMessage;
+  containerStyle?: StyleProp<ViewStyle>;
+  imageStyle?: StyleProp<ImageStyle>;
+  imageProps?: Partial<ImageProps>;
+  lightboxProps?: object;
 }
 
 export default class MessageImage<
@@ -49,15 +50,15 @@ export default class MessageImage<
     imageStyle: {},
     imageProps: {},
     lightboxProps: {},
-  }
+  };
 
-  static propTypes = {
-    currentMessage: PropTypes.object,
-    containerStyle: StylePropType,
-    imageStyle: StylePropType,
-    imageProps: PropTypes.object,
-    lightboxProps: PropTypes.object,
-  }
+  // static propTypes = {
+  //   currentMessage: PropTypes.object,
+  //   containerStyle: StylePropType,
+  //   imageStyle: StylePropType,
+  //   imageProps: PropTypes.object,
+  //   lightboxProps: PropTypes.object,
+  // };
   render() {
     const {
       containerStyle,
@@ -65,25 +66,25 @@ export default class MessageImage<
       imageProps,
       imageStyle,
       currentMessage,
-    } = this.props
+    } = this.props;
     if (!!currentMessage) {
       return (
         <View style={[styles.container, containerStyle]}>
-          <Lightbox
+          {/* <Lightbox
             activeProps={{
               style: styles.imageActive,
             }}
             {...lightboxProps}
-          >
-            <Image
-              {...imageProps}
-              style={[styles.image, imageStyle]}
-              source={{ uri: currentMessage.image }}
-            />
-          </Lightbox>
+          > */}
+          <Image
+            {...imageProps}
+            style={[styles.image, imageStyle]}
+            source={{ uri: currentMessage.image }}
+          />
+          {/* </Lightbox> */}
         </View>
-      )
+      );
     }
-    return null
+    return null;
   }
 }

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+// import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,14 +8,14 @@ import {
   ViewStyle,
   TextStyle,
   TextProps,
-} from 'react-native'
-import dayjs from 'dayjs'
+} from 'react-native';
+import dayjs from 'dayjs';
 
-import Color from './Color'
+import Color from './Color';
 
-import { StylePropType, isSameDay } from './utils'
-import { DATE_FORMAT } from './Constant'
-import { IMessage } from './Models'
+import { isSameDay } from './utils';
+import { DATE_FORMAT } from './Constant';
+import { IMessage } from './Models';
 
 const styles = StyleSheet.create({
   container: {
@@ -30,26 +30,26 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
-})
+});
 
 export interface DayProps<TMessage extends IMessage> {
-  currentMessage?: TMessage
-  nextMessage?: TMessage
-  previousMessage?: TMessage
-  containerStyle?: StyleProp<ViewStyle>
-  wrapperStyle?: StyleProp<ViewStyle>
-  textStyle?: StyleProp<TextStyle>
-  textProps?: TextProps
-  dateFormat?: string
-  inverted?: boolean
+  currentMessage?: TMessage;
+  nextMessage?: TMessage;
+  previousMessage?: TMessage;
+  containerStyle?: StyleProp<ViewStyle>;
+  wrapperStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  textProps?: TextProps;
+  dateFormat?: string;
+  inverted?: boolean;
 }
 
 export default class Day<
   TMessage extends IMessage = IMessage
 > extends PureComponent<DayProps<TMessage>> {
-  static contextTypes = {
-    getLocale: PropTypes.func,
-  }
+  // static contextTypes = {
+  //   getLocale: PropTypes.func,
+  // };
 
   static defaultProps = {
     currentMessage: {
@@ -62,19 +62,19 @@ export default class Day<
     textStyle: {},
     textProps: {},
     dateFormat: DATE_FORMAT,
-  }
+  };
 
-  static propTypes = {
-    currentMessage: PropTypes.object,
-    previousMessage: PropTypes.object,
-    nextMessage: PropTypes.object,
-    inverted: PropTypes.bool,
-    containerStyle: StylePropType,
-    wrapperStyle: StylePropType,
-    textStyle: StylePropType,
-    textProps: PropTypes.object,
-    dateFormat: PropTypes.string,
-  }
+  // static propTypes = {
+  //   currentMessage: PropTypes.object,
+  //   previousMessage: PropTypes.object,
+  //   nextMessage: PropTypes.object,
+  //   inverted: PropTypes.bool,
+  //   containerStyle: StylePropType,
+  //   wrapperStyle: StylePropType,
+  //   textStyle: StylePropType,
+  //   textProps: PropTypes.object,
+  //   dateFormat: PropTypes.string,
+  // };
 
   render() {
     const {
@@ -85,7 +85,7 @@ export default class Day<
       wrapperStyle,
       textStyle,
       textProps,
-    } = this.props
+    } = this.props;
 
     if (currentMessage && !isSameDay(currentMessage, previousMessage!)) {
       return (
@@ -98,8 +98,8 @@ export default class Day<
             </Text>
           </View>
         </View>
-      )
+      );
     }
-    return null
+    return null;
   }
 }

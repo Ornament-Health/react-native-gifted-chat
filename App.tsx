@@ -1,34 +1,33 @@
-import { MaterialIcons } from '@expo/vector-icons'
-import { AppLoading, Asset, Linking } from 'expo'
-import React, { Component } from 'react'
-import { StyleSheet, View, Text, Platform } from 'react-native'
-import { Bubble, GiftedChat, SystemMessage, IMessage, Send } from './src'
+// @ts-nocheck
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, Platform } from 'react-native';
+import { Bubble, GiftedChat, SystemMessage, IMessage, Send } from './src';
 
-import AccessoryBar from './example-expo/AccessoryBar'
-import CustomActions from './example-expo/CustomActions'
-import CustomView from './example-expo/CustomView'
-import NavBar from './example-expo/NavBar'
-import messagesData from './example-expo/data/messages'
-import earlierMessages from './example-expo/data/earlierMessages'
+import AccessoryBar from './example-expo/AccessoryBar';
+import CustomActions from './example-expo/CustomActions';
+import CustomView from './example-expo/CustomView';
+import NavBar from './example-expo/NavBar';
+import messagesData from './example-expo/data/messages';
+import earlierMessages from './example-expo/data/earlierMessages';
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-})
+  container: { flex: 1, backgroundColor: 'red' },
+});
 
 const filterBotMessages = message =>
-  !message.system && message.user && message.user._id && message.user._id === 2
-const findStep = step => message => message._id === step
+  !message.system && message.user && message.user._id && message.user._id === 2;
+const findStep = step => message => message._id === step;
 
 const user = {
   _id: 1,
   name: 'Developer',
-}
+};
 
 const otherUser = {
   _id: 2,
   name: 'React Native',
   avatar: 'https://facebook.github.io/react/img/logo_og.png',
-}
+};
 
 export default class App extends Component {
   state = {
@@ -40,30 +39,30 @@ export default class App extends Component {
     isLoadingEarlier: false,
     appIsReady: false,
     isTyping: false,
-  }
+  };
 
-  _isMounted = false
+  _isMounted = false;
 
   componentDidMount() {
-    this._isMounted = true
+    this._isMounted = true;
     // init with only system messages
     this.setState({
       messages: messagesData, // messagesData.filter(message => message.system),
       appIsReady: true,
       isTyping: false,
-    })
+    });
   }
 
   componentWillUnmount() {
-    this._isMounted = false
+    this._isMounted = false;
   }
 
   onLoadEarlier = () => {
     this.setState(() => {
       return {
         isLoadingEarlier: true,
-      }
-    })
+      };
+    });
 
     setTimeout(() => {
       if (this._isMounted === true) {
@@ -72,61 +71,61 @@ export default class App extends Component {
             messages: GiftedChat.prepend(
               previousState.messages,
               earlierMessages() as IMessage[],
-              Platform.OS !== 'web',
+              Platform.OS !== 'web'
             ),
             loadEarlier: true,
             isLoadingEarlier: false,
-          }
-        })
+          };
+        });
       }
-    }, 1500) // simulating network
-  }
+    }, 1500); // simulating network
+  };
 
   onSend = (messages = []) => {
-    const step = this.state.step + 1
+    const step = this.state.step + 1;
     this.setState((previousState: any) => {
-      const sentMessages = [{ ...messages[0], sent: true, received: true }]
+      const sentMessages = [{ ...messages[0], sent: true, received: true }];
       return {
         messages: GiftedChat.append(
           previousState.messages,
           sentMessages,
-          Platform.OS !== 'web',
+          Platform.OS !== 'web'
         ),
         step,
-      }
-    })
+      };
+    });
     // for demo purpose
     // setTimeout(() => this.botSend(step), Math.round(Math.random() * 1000))
-  }
+  };
 
   botSend = (step = 0) => {
     const newMessage = (messagesData as IMessage[])
       .reverse()
       // .filter(filterBotMessages)
-      .find(findStep(step))
+      .find(findStep(step));
     if (newMessage) {
       this.setState((previousState: any) => ({
         messages: GiftedChat.append(
           previousState.messages,
           [newMessage],
-          Platform.OS !== 'web',
+          Platform.OS !== 'web'
         ),
-      }))
+      }));
     }
-  }
+  };
 
   parsePatterns = (_linkStyle: any) => {
     return [
       {
         pattern: /#(\w+)/,
         style: { textDecorationLine: 'underline', color: 'darkorange' },
-        onPress: () => Linking.openURL('http://gifted.chat'),
+        // onPress: () => Linking.openURL('http://gifted.chat'),
       },
-    ]
-  }
+    ];
+  };
 
   renderCustomView(props) {
-    return <CustomView {...props} />
+    return <CustomView {...props} />;
   }
 
   onReceive = (text: string) => {
@@ -142,41 +141,41 @@ export default class App extends Component {
               user: otherUser,
             },
           ],
-          Platform.OS !== 'web',
+          Platform.OS !== 'web'
         ),
-      }
-    })
-  }
+      };
+    });
+  };
 
   onSendFromUser = (messages: IMessage[] = []) => {
-    const createdAt = new Date()
+    const createdAt = new Date();
     const messagesToUpload = messages.map(message => ({
       ...message,
       user,
       createdAt,
       _id: Math.round(Math.random() * 1000000),
-    }))
-    this.onSend(messagesToUpload)
-  }
+    }));
+    this.onSend(messagesToUpload);
+  };
 
   setIsTyping = () => {
     this.setState({
       isTyping: !this.state.isTyping,
-    })
-  }
+    });
+  };
 
   renderAccessory = () => (
     <AccessoryBar onSend={this.onSendFromUser} isTyping={this.setIsTyping} />
-  )
+  );
 
   renderCustomActions = props =>
     Platform.OS === 'web' ? null : (
       <CustomActions {...props} onSend={this.onSendFromUser} />
-    )
+    );
 
   renderBubble = (props: any) => {
-    return <Bubble {...props} />
-  }
+    return <Bubble {...props} />;
+  };
 
   renderSystemMessage = props => {
     return (
@@ -189,11 +188,11 @@ export default class App extends Component {
           fontSize: 14,
         }}
       />
-    )
-  }
+    );
+  };
 
   onQuickReply = replies => {
-    const createdAt = new Date()
+    const createdAt = new Date();
     if (replies.length === 1) {
       this.onSend([
         {
@@ -202,7 +201,7 @@ export default class App extends Component {
           text: replies[0].title,
           user,
         },
-      ])
+      ]);
     } else if (replies.length > 1) {
       this.onSend([
         {
@@ -211,30 +210,31 @@ export default class App extends Component {
           text: replies.map(reply => reply.title).join(', '),
           user,
         },
-      ])
+      ]);
     } else {
-      console.warn('replies param is not set correctly')
+      // console.log('replies param is not set correctly');
     }
-  }
+  };
 
-  renderQuickReplySend = () => <Text>{' custom send =>'}</Text>
+  renderQuickReplySend = () => <Text>{' custom send =>'}</Text>;
 
   renderSend = (props: Send['props']) => (
     <Send {...props} containerStyle={{ justifyContent: 'center' }}>
-      <MaterialIcons size={30} color={'tomato'} name={'send'} />
+      {/* <MaterialIcons size={30} color={'tomato'} name={'send'} /> */}
     </Send>
-  )
+  );
 
   render() {
-    if (!this.state.appIsReady) {
-      return <AppLoading />
-    }
+    // if (!this.state.appIsReady) {
+    //   // return <AppLoading />;
+    //   return null;
+    // }
     return (
       <View
         style={styles.container}
         accessible
-        accessibilityLabel='main'
-        testID='main'
+        accessibilityLabel="main"
+        testID="main"
       >
         <NavBar />
         <GiftedChat
@@ -249,7 +249,7 @@ export default class App extends Component {
           onLongPressAvatar={user => alert(JSON.stringify(user))}
           onPressAvatar={() => alert('short press')}
           onQuickReply={this.onQuickReply}
-          keyboardShouldPersistTaps='never'
+          keyboardShouldPersistTaps="never"
           renderAccessory={Platform.OS === 'web' ? null : this.renderAccessory}
           renderActions={this.renderCustomActions}
           renderBubble={this.renderBubble}
@@ -264,6 +264,6 @@ export default class App extends Component {
           infiniteScroll
         />
       </View>
-    )
+    );
   }
 }

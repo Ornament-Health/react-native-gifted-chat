@@ -1,18 +1,19 @@
-import PropTypes from 'prop-types'
-import React from 'react'
+// @ts-nocheck
+// import PropTypes from 'prop-types';
+import React from 'react';
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   ViewPropTypes,
-} from 'react-native'
+} from 'react-native';
 
 import {
   getLocationAsync,
   pickImageAsync,
   takePictureAsync,
-} from './mediaUtils'
+} from './mediaUtils';
 
 export default class CustomActions extends React.Component {
   onActionsPress = () => {
@@ -21,40 +22,40 @@ export default class CustomActions extends React.Component {
       'Take Picture',
       'Send Location',
       'Cancel',
-    ]
-    const cancelButtonIndex = options.length - 1
+    ];
+    const cancelButtonIndex = options.length - 1;
     this.context.actionSheet().showActionSheetWithOptions(
       {
         options,
         cancelButtonIndex,
       },
       async buttonIndex => {
-        const { onSend } = this.props
+        const { onSend } = this.props;
         switch (buttonIndex) {
           case 0:
-            pickImageAsync(onSend)
-            return
+            pickImageAsync(onSend);
+            return;
           case 1:
-            takePictureAsync(onSend)
-            return
+            takePictureAsync(onSend);
+            return;
           case 2:
-            getLocationAsync(onSend)
+            getLocationAsync(onSend);
           default:
         }
-      },
-    )
-  }
+      }
+    );
+  };
 
   renderIcon = () => {
     if (this.props.renderIcon) {
-      return this.props.renderIcon()
+      return this.props.renderIcon();
     }
     return (
       <View style={[styles.wrapper, this.props.wrapperStyle]}>
         <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
       </View>
-    )
-  }
+    );
+  };
 
   render() {
     return (
@@ -64,7 +65,7 @@ export default class CustomActions extends React.Component {
       >
         {this.renderIcon()}
       </TouchableOpacity>
-    )
+    );
   }
 }
 
@@ -88,11 +89,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center',
   },
-})
+});
 
-CustomActions.contextTypes = {
-  actionSheet: PropTypes.func,
-}
+// CustomActions.contextTypes = {
+//   actionSheet: PropTypes.func,
+// };
 
 CustomActions.defaultProps = {
   onSend: () => {},
@@ -101,13 +102,13 @@ CustomActions.defaultProps = {
   containerStyle: {},
   wrapperStyle: {},
   iconTextStyle: {},
-}
+};
 
-CustomActions.propTypes = {
-  onSend: PropTypes.func,
-  options: PropTypes.object,
-  renderIcon: PropTypes.func,
-  containerStyle: ViewPropTypes.style,
-  wrapperStyle: ViewPropTypes.style,
-  iconTextStyle: Text.propTypes.style,
-}
+// CustomActions.propTypes = {
+//   onSend: PropTypes.func,
+//   options: PropTypes.object,
+//   renderIcon: PropTypes.func,
+//   containerStyle: ViewPropTypes.style,
+//   wrapperStyle: ViewPropTypes.style,
+//   iconTextStyle: Text.propTypes.style,
+// };
