@@ -207,5 +207,5 @@ export const assistantMessages: IMessage[] = [
     createdAt: 1554744013721,
     user: bot,
     quickReplies,
-  }
+  },
 ];
