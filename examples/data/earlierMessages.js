@@ -127,3 +127,5 @@ export default () => [
     system: true,
   },
 ];
+
+export const assistantEarlierMessages = [];

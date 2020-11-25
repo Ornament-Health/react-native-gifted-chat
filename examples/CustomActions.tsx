@@ -2,11 +2,11 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import {
-  getLocationAsync,
-  pickImageAsync,
-  takePictureAsync,
-} from './mediaUtils';
+// import {
+//   getLocationAsync,
+//   pickImageAsync,
+//   takePictureAsync,
+// } from './mediaUtils';
 
 export default class CustomActions extends React.Component<any> {
   static defaultProps = {

@@ -7,6 +7,7 @@ import Bubbles from './Bubbles';
 import TypingIndicator from './TypingIndicator';
 
 import App from '../examples/App';
+import Assistant from '../examples/Assistant';
 
 storiesOf('Src/Components', module)
   .add('Circle', () => <Circle radius={10} />)
@@ -27,4 +28,6 @@ storiesOf('Src/TypingIndicator', module).add('default', () => (
   </View>
 ));
 
-storiesOf('Src/App', module).add('default', () => <App />);
+storiesOf('Src/App', module)
+  .add('default', () => <App />)
+  .add('assistant', () => <Assistant />);

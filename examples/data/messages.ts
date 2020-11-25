@@ -1,3 +1,16 @@
+import { IMessage, User, QuickReplies } from '../../src';
+
+export const bot: User = {
+  _id: 1,
+  name: 'React Native',
+  // avatar: 'https://facebook.github.io/react/img/logo_og.png',
+};
+
+export const user: User = {
+  _id: 2,
+  name: 'Developer',
+};
+
 export default [
   {
     _id: 9,
@@ -165,4 +178,34 @@ export default [
       name: 'React Native',
     },
   },
+];
+
+const quickReplies: QuickReplies = {
+  type: 'radio',
+  values: [
+    {
+      title: 'Yes',
+      value: 'Yes',
+    },
+    {
+      title: 'No',
+      value: 'No',
+    },
+  ],
+};
+
+export const assistantMessages: IMessage[] = [
+  {
+    _id: 1,
+    text: 'Ok!',
+    createdAt: 1554744013720,
+    user: bot,
+  },
+  {
+    _id: 2,
+    text: 'Do you want to play a game?',
+    createdAt: 1554744013721,
+    user: bot,
+    quickReplies,
+  }
 ];
