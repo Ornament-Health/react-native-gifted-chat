@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   LayoutChangeEvent,
 } from 'react-native';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 import uuid from 'uuid';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
@@ -519,7 +520,7 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
   }
 
   safeAreaSupport = (bottomOffset?: number) => {
-    return bottomOffset != null ? bottomOffset : utils.getBottomSpace();
+    return bottomOffset != null ? bottomOffset : getBottomSpace();
   };
 
   /**
