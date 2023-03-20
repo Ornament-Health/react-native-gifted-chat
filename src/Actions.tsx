@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types'
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,18 +7,17 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
-} from 'react-native'
-import Color from './Color'
-import { StylePropType } from './utils'
+} from 'react-native';
+import Color from './Color';
 
 export interface ActionsProps {
-  options?: { [key: string]: any }
-  optionTintColor?: string
-  icon?: () => ReactNode
-  wrapperStyle?: StyleProp<ViewStyle>
-  iconTextStyle?: StyleProp<TextStyle>
-  containerStyle?: StyleProp<ViewStyle>
-  onPressActionButton?(): void
+  options?: { [key: string]: any };
+  optionTintColor?: string;
+  icon?: () => ReactNode;
+  wrapperStyle?: StyleProp<ViewStyle>;
+  iconTextStyle?: StyleProp<TextStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  onPressActionButton?(): void;
 }
 
 export default class Actions extends React.Component<ActionsProps> {
@@ -30,50 +28,40 @@ export default class Actions extends React.Component<ActionsProps> {
     containerStyle: {},
     iconTextStyle: {},
     wrapperStyle: {},
-  }
+  };
 
-  static propTypes = {
-    onSend: PropTypes.func,
-    options: PropTypes.object,
-    optionTintColor: PropTypes.string,
-    icon: PropTypes.func,
-    onPressActionButton: PropTypes.func,
-    wrapperStyle: StylePropType,
-    containerStyle: StylePropType,
-  }
-
-  static contextTypes = {
-    actionSheet: PropTypes.func,
-  }
+  // static contextTypes = {
+  //   actionSheet: PropTypes.func,
+  // };
 
   onActionsPress = () => {
-    const { options } = this.props
-    const optionKeys = Object.keys(options!)
-    const cancelButtonIndex = optionKeys.indexOf('Cancel')
-    this.context.actionSheet().showActionSheetWithOptions(
-      {
-        options: optionKeys,
-        cancelButtonIndex,
-        tintColor: this.props.optionTintColor,
-      },
-      (buttonIndex: number) => {
-        const key = optionKeys[buttonIndex]
-        if (key) {
-          options![key](this.props)
-        }
-      },
-    )
-  }
+    // const { options } = this.props;
+    // const optionKeys = Object.keys(options!);
+    // const cancelButtonIndex = optionKeys.indexOf('Cancel');
+    // this.context.actionSheet().showActionSheetWithOptions(
+    //   {
+    //     options: optionKeys,
+    //     cancelButtonIndex,
+    //     tintColor: this.props.optionTintColor,
+    //   },
+    //   (buttonIndex: number) => {
+    //     const key = optionKeys[buttonIndex];
+    //     if (key) {
+    //       options![key](this.props);
+    //     }
+    //   }
+    // );
+  };
 
   renderIcon() {
     if (this.props.icon) {
-      return this.props.icon()
+      return this.props.icon();
     }
     return (
       <View style={[styles.wrapper, this.props.wrapperStyle]}>
         <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
       </View>
-    )
+    );
   }
 
   render() {
@@ -84,7 +72,7 @@ export default class Actions extends React.Component<ActionsProps> {
       >
         {this.renderIcon()}
       </TouchableOpacity>
-    )
+    );
   }
 }
 
@@ -108,4 +96,4 @@ const styles = StyleSheet.create({
     backgroundColor: Color.backgroundTransparent,
     textAlign: 'center',
   },
-})
+});

@@ -1,7 +1,7 @@
-import { isSameDay, isSameUser } from '../utils'
+import { isSameDay, isSameUser } from '../utils';
 
 it('should test if same day', () => {
-  const now = new Date()
+  const now = new Date();
   expect(
     isSameDay(
       {
@@ -15,10 +15,10 @@ it('should test if same day', () => {
         text: 'test2',
         createdAt: now,
         user: { _id: 2 },
-      },
-    ),
-  ).toBe(true)
-})
+      }
+    )
+  ).toBe(true);
+});
 
 it('should test if same user', () => {
   const message = {
@@ -26,6 +26,6 @@ it('should test if same user', () => {
     text: 'test',
     createdAt: new Date(),
     user: { _id: 1 },
-  }
-  expect(isSameUser(message, message)).toBe(true)
-})
+  };
+  expect(isSameUser(message, message)).toBe(true);
+});
